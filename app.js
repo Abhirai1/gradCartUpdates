@@ -6,6 +6,7 @@ const bcrypt=require('bcryptjs');
 const nodemailer = require('nodemailer');
 const multer  = require('multer');
 const session = require('express-session');
+require('dotenv').config();
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -247,6 +248,8 @@ app.get('/search', async (req, res) => {
 //     }
 // });
 
+
+// search route
 app.get('/search', async (req, res) => {
     try {
         console.log('hii');

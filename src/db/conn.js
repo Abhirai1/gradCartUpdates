@@ -1,6 +1,9 @@
 const mongoose=require('mongoose');
+require('dotenv').config();
+const mongoURL=process.env.MONGO_URL;
 
-mongoose.connect('mongodb://127.0.0.1:27017/GradeCart')
+// mongoURL=
+mongoose.connect(mongoURL)
 .then(()=>{
     console.log('connected successfully');
 })

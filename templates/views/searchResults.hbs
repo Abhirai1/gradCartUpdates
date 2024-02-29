@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Navbar */
+        .navbar {
+            background-color: #343a40;
+        }
+
+        .navbar-brand,
+        .navbar-nav .nav-link {
+            color: #ffffff;
+        }
+
+        .navbar-brand:hover,
+        .navbar-nav .nav-link:hover {
+            color: #ffc107;
+        }
+
+        .product-card {
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-name {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            margin-bottom: 10px;
+        }
+
+        .contact-owner-btn {
+            background-color: #ffc107;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: auto;
+        }
+
+        .contact-owner-btn:hover {
+            background-color: #ffca2b;
+        }
+
+        /* Message form */
+        #message-form {
+            display: none;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #message-form h2 {
+            margin-top: 0;
+        }
+
+        #message-form p {
+            margin-bottom: 10px;
+        }
+
+        #message-form .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">GradCaRt</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Search Results</h1>
+        <div class="row">
+            {{#each products}}
+            <div class="product-card">
+                <img src="{{this.productImage}}" alt="{{this.productName}}">
+                <div class="product-details">
+                    <h2 class="product-name">{{this.productName}}</h2>
+                    <p class="product-description">Description: {{this.productDescription}}</p>
+                    <p class="product-price">Price: {{this.productPrice}}</p>
+                    <p class="product-category">Category: {{this.productCategory}}</p>
+                    <button class="contact-owner-btn"
+                        onclick="showMessageForm('{{this.ownerEmail}}', '{{this.ownerName}}', '{{this.username}}')">Contact
+                        Owner</button>
+
+                </div>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <!-- Message form (hidden by default) -->
+    <!-- Message form (hidden by default) -->
+    <!-- Message form (hidden by default) -->
+    <div id="message-form" class="container mt-4">
+        <h2>Contact Owner</h2>
+        <p>Hi <span id="ownerName"></span>,</p>
+        <p>We're excited to connect with you regarding your product. Please feel free to leave a message below:</p>
+        <form>
+            <div class="form-group">
+                <label for="ownerEmail">Owner's Email</label>
+                <input type="email" class="form-control" id="ownerEmail" disabled>
+            </div>
+            <!-- Add the new input field for ownerUsername here -->
+            <div class="form-group">
+                <label for="ownerUsername">Owner's Username</label>
+                <input type="text" class="form-control" id="ownerUsername" disabled>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="4"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+    </div>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function showMessageForm(ownerEmail, ownerName, username) {
+            document.getElementById('message-form').style.display = 'block';
+            document.getElementById('ownerEmail').value = ownerEmail;
+            document.getElementById('ownerName').innerText = ownerName;
+            document.getElementById('ownerUsername').value = username;
+        }
+    </script>
+
+</body>
+
+</html>

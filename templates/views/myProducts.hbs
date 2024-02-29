@@ -1,0 +1,102 @@
+<!-- myProducts.hbs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Products</title>
+     <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Product card styles */
+        .product-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .product-details {
+            padding: 20px;
+        }
+        .product-name {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        .product-description {
+            color: #666;
+        }
+        .product-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .product-price {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .contact-owner-btn {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .contact-owner-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+       <h1 class="text-center">My Products</h1>
+
+    <div class="container">
+        {{#each products}}
+            <div class="product-card">
+                <img src="/{{this.productImage}}" alt="{{this.productName}}">
+                <div class="product-details">
+                    <h2 class="product-name">{{this.productName}}</h2>
+                    <p class="product-description">Description: {{this.productDescription}}</p>
+                    <div class="product-info">
+                        <p class="product-price">Price: {{this.productPrice}} Rs</p>
+                        <button class="contact-owner-btn" onclick="contactOwner('{{this.ownerEmail}}')">Contact Owner</button>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+
+    <script>
+        // Function to contact the owner via email
+        function contactOwner(ownerEmail) {
+            window.location.href = "mailto:" + ownerEmail;
+        }
+    </script>
+</body>
+</html>
